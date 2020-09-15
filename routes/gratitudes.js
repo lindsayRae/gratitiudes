@@ -11,10 +11,19 @@ router.get('/', async (req, res) => {
     res.send(results)
 })
 
+/**
+ * @param {string} sequential id from the db
+ */
 router.get('/:id', async (req, res) => {    
     const {id} = req.params
-    const results = await db('gratitudes').where({id})    
-    res.send(results)
+    const results = await db('gratitudes').where({id}) 
+    
+    if(results.length > 0){
+        res.send(results)
+    } else {
+        res.status(404).send("No item with such id")
+    }
+    
 })
 
 router.post('/', async (req, res) => {
@@ -29,6 +38,9 @@ router.post('/', async (req, res) => {
     res.send(result)
 })
 
+/**
+ * @param {string} sequential id from the db
+ */
 router.put('/:id', async (req, res) => {
     const {id} = req.params
     const {sentence} = req.body
@@ -48,9 +60,15 @@ router.put('/:id', async (req, res) => {
         .update(toUpdate)
         .returning('*')
 
-    res.send(updated)
+        if(updated.length > 0) {
+            res.send(updated)
+        } else {
+            res.status(404).send("No item with such id")
+        }
+   
 
 })
+
 
 router.delete('/:id', async (req, res) => {
     const {id} = req.params
@@ -60,6 +78,11 @@ router.delete('/:id', async (req, res) => {
         .del()
         .returning('*')
 
-    res.send(result)
+    if(result.length > 0){
+        res.send(result)
+    } else {
+        res.status(404).send("No item with such id")
+    }
+    
 })
 

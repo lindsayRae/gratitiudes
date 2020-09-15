@@ -11,15 +11,6 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-
-/**
- * 
- */
-app.get('https://type.fit/api/quotes', (req, res) => {
-   
-    res.send(res)
-})
-
 app.use('/', routes)
 
 app.listen(port, () => {

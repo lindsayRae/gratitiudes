@@ -1,0 +1,2 @@
+Use the below API for the frontend
+https://type.fit/api/quotes
