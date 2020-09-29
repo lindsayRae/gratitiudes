@@ -1,10 +1,18 @@
 const express = require('express')
+
+const {isEmail} = require('laiello-simple-validator')
 const router = express.Router()
+
 
 const db = require('../db')
 
 module.exports = router
 
+console.log(isEmail())
+
+/**
+ * Retrieve all gratitudes
+ */
 router.get('/', async (req, res) => {
     
     const results = await db.select().table('gratitudes')     
@@ -12,7 +20,7 @@ router.get('/', async (req, res) => {
 })
 
 /**
- * @param {string} sequential id from the db
+ * Given an id, retrieve one gratitude 
  */
 router.get('/:id', async (req, res) => {    
     const {id} = req.params
@@ -26,20 +34,25 @@ router.get('/:id', async (req, res) => {
     
 })
 
+/**
+ * Create one gratitude
+ */
 router.post('/', async (req, res) => {
     
     const {sentence} = req.body
 
+    // add profanity, email and phone number filter 
     if(!sentence) {
-        res.status(400).send("Please add a sentance for what you are grateful for.")
-    }
-    
+        return res.status(400).send("Please add a sentance for what you are grateful for.")
+    }     
+   
     const result = await db('gratitudes').insert({sentence}).returning('*')
     res.send(result)
+     
 })
 
 /**
- * @param {string} sequential id from the db
+ * Given an id and a sentence, update one gratitude
  */
 router.put('/:id', async (req, res) => {
     const {id} = req.params
@@ -69,7 +82,9 @@ router.put('/:id', async (req, res) => {
 
 })
 
-
+/**
+ * Given an id, delete one gratitude
+ */
 router.delete('/:id', async (req, res) => {
     const {id} = req.params
 

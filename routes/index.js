@@ -8,7 +8,7 @@ const gratitudes = require('./gratitudes')
 
 module.exports = router
 
-router.use('/crud', crud)
+//router.use('/crud', crud)
 router.use('/gratitudes', gratitudes)
 
 // router.use('/auth', auth)

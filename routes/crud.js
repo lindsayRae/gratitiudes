@@ -17,9 +17,8 @@ const createItem = (title, id = false) => ({
 
 //Gratitude 
 const items = []
-console.log('items', items)
 items.push(createItem('Never going to give you up'))
-console.log('items', items)
+
 
 
 router.get('/', (req, res) => {
