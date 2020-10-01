@@ -17,5 +17,8 @@
     "knex": "^0.21.5",
     "laiello-simple-validator": "^1.0.4",
     "pg": "^8.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

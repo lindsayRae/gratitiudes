@@ -8,7 +8,7 @@ const db = require('../db')
 
 module.exports = router
 
-console.log(isEmail())
+console.log('isEmail: ', isEmail('test@email.com'))
 
 /**
  * Retrieve all gratitudes
