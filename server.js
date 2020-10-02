@@ -4,7 +4,7 @@ const routes = require('./routes')
 const path = require('path');
 
 const app = express()
-const port = 9999
+const port = process.env.PORT || 9999
 
 app.use(express.json())
 
