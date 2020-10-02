@@ -18,17 +18,12 @@ app.get('/api/getList', (req,res) => {
     console.log('Sent list of items');
 });
 
+app.use('/api', routes) 
+
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
-
-// Test API
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.use('/', routes)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
